@@ -1,4 +1,4 @@
-const apiKey = import.meta.env.HERE_API_KEY;
+const apiKey = import.meta.env.VITE_HERE_API_KEY;
 
 const hereLayers = [
   {
@@ -37,15 +37,16 @@ function createUrl(tpl, layerDesc) {
     .replace('{apiKey}', layerDesc.apiKey);
 }
 
-const layers = [];
+export const baseLayers = [];
 
 for (let i = 0; i < hereLayers.length; ++i) {
   const layerDesc = hereLayers[i];
-  layers.push(
+  baseLayers.push(
     new ol.layer.Tile({
       title: layerDesc.title,
       type: 'base',
       visible: i == 0 ? true : false,
+      zIndex: 0,
       source: new ol.source.XYZ({
         url: createUrl(urlTpl, layerDesc),
         attributions:
@@ -61,5 +62,16 @@ for (let i = 0; i < hereLayers.length; ++i) {
 export const baseGroup = new ol.layer.Group({
     title: 'Mapas Base',
     fold: true,
-    layers: layers
+    layers: baseLayers
 });
+
+export async function getOverlays(){
+  let data = await fetch('http://localhost:3000/Layers')
+      .then(response => response.json());
+  return data;
+}
+
+
+
+
+

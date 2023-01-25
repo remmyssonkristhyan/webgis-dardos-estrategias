@@ -1,0 +1,19 @@
+{
+    "Layers": {
+        "0":{
+            "url": "https://sedac.ciesin.columbia.edu/geoserver/epi/wms",
+            "title":"EPI 2010: Forestry",
+            "layer":"epi:epi-environmental-performance-index-2010_forestry"
+        },
+        "1":{
+            "url": "https://sedac.ciesin.columbia.edu/geoserver/epi/wms",
+            "title":"EPI 2010: Climate Change",
+            "layer":"epi:epi-environmental-performance-index-2010_climate-change"
+        },
+        "2":{
+            "url": "https://sedac.ciesin.columbia.edu/geoserver/epi/wms",
+            "title":"EPI 2010_Agriculture",
+            "layer":"epi:epi-environmental-performance-index-2010_agriculture"
+        }
+     }
+}

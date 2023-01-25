@@ -8,6 +8,11 @@ body {
 }
 
 .map {
-  height: 90%;
+  height: 100%;
   width: 100%;
+}
+
+#body-row {
+  width: 100%;
+  height: calc(100vh - 56px);
 }
