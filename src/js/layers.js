@@ -1,4 +1,5 @@
 const apiKey = import.meta.env.VITE_HERE_API_KEY;
+console.log('api key: ', apiKey)
 
 const hereLayers = [
   {

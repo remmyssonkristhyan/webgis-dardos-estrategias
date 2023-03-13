@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebGis Dardos Estratégias</title>
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">    <link rel="stylesheet" href="./css/sidebar.css">
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+</head>
+<body>
+  <h1 id="logado"></h1>
+    <!-- Bootstrap NavBar -->
+    <nav class="navbar navbar-expand-md bg-light">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#">
+          <img src="./assets/logos/LOGO PNG ORIGINAL.png" height="30" class="d-inline-block align-top" alt="">
+        </a>
+        <button class="btn-logout" onclick="sair()">Sair</button>
+      </nav><!-- NavBar END -->
+  
+  
+      <!-- Bootstrap row -->
+      <div class="row" id="body-row">
+          <!-- Sidebar -->
+          <div id="sidebar-container" class="sidebar-expanded d-none d-md-block"><!-- d-* hiddens the Sidebar in smaller devices. Its itens can be kept on the Navbar 'Menu' -->
+              <!-- Bootstrap List Group -->
+              <ul class="list-group">
+                  <!-- Separator with title -->
+                  <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
+                      <small>CAMADAS</small>
+                  </li>
+                  <!-- /END Separator -->
+                  <!-- Menu with submenu -->
+                  <a href="#baselayers" data-toggle="collapse" aria-expanded="false" class="bg-light text-dark list-group-item list-group-item-action flex-column align-items-start">
+                      <div class="d-flex w-100 justify-content-start align-items-center">
+                          <span class="fas fa-layer-group fa-fw mr-3"></span> 
+                          <span class="menu-collapsed">Camadas Base</span>
+                          <span class="submenu-icon ml-auto"></span>
+                      </div>
+                  </a>
+                  <!-- Submenu content -->
+                  <div id='baselayers' class="collapse sidebar-submenu"></div>
+                  <a href="#overlays" data-toggle="collapse" aria-expanded="false" class="bg-light text-dark list-group-item list-group-item-action flex-column align-items-start">
+                      <div class="d-flex w-100 justify-content-start align-items-center">
+                          <span class="fa fa-layer-group fa-fw mr-3"></span>
+                          <span class="menu-collapsed">Overlays</span>
+                          <span class="submenu-icon ml-auto"></span>
+                      </div>
+                  </a>
+                  <!-- Submenu content -->
+                  <div id='overlays' class="collapse sidebar-submenu"></div>            
+                  <!-- Separator with title -->
+                  <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
+                      <small>OUTROS CONTROLES</small>
+                  </li>
+                  <!-- /END Separator -->
+                  <a href="#heatmap" data-toggle="collapse" aria-expanded="false" class="bg-light text-dark list-group-item list-group-item-action flex-column align-items-start">
+                      <div class="d-flex w-100 justify-content-start align-items-center">
+                          <span class="fa fa-flame fa-fw mr-3"></span>
+                          <span class="menu-collapsed">Mapa de calor</span>
+                      </div>
+                  </a>
+                  <div id="heatmap" class="collapse sidebar-submenu">
+                      <a class="list-group-item list-group-item-action bg-light text-dark" style="height: 200px;">
+                          <form class="menu-collapsed">
+                              <label for="select">Selecione uma camada</label>
+                              <select id="select" name="select" class="col">
+                                  <option value="valor1">Valor 1</option>
+                                  <option value="valor2" selected>EPI 2010: Climate Change</option>
+                                  <option value="valor3">Valor 3</option>
+                              </select><br><br>
+                              <label for="radius">radius size</label>
+                              <input id="radius" type="range" min="1" max="50" step="1" value="5"/>
+                              <label for="blur">blur size</label>
+                              <input id="blur" type="range" min="1" max="50" step="1" value="15"/>
+                          </form>
+                      </a>
+                  </div>
+                  <a href="#isochrone" data-toggle="collapse" aria-expanded="false" class="bg-light text-dark list-group-item list-group-item-action flex-column align-items-start">
+                      <div class="d-flex w-100 justify-content-start align-items-center">
+                          <span class="fa fa-flame fa-fw mr-3"></span>
+                          <span class="menu-collapsed">Isocrona</span>
+                      </div>
+                    </a>
+                  <!-- Separator without title -->
+                  <li class="list-group-item sidebar-separator menu-collapsed"></li>            
+                  <!-- /END Separator -->
+                  <a href="#input-file" data-toggle="collapse" aria-expanded="false" class="bg-light text-dark list-group-item list-group-item-action flex-column align-items-start">
+                      <div class="d-flex w-100 justify-content-start align-items-center">
+                          <span class="fa fa-folder fa-fw mr-3"></span>
+                          <span class="menu-collapsed">Upload de arquivos</span>
+                      </div>
+                  </a>
+                  <div id="input-file" class="collapse sidebar-submenu">
+                      <a class="list-group-item list-group-item-action bg-light text-dark" style="height: 100px;">
+                          <span class="control-fileupload">
+                              <label for="file">Escolha uma arquivo :</label>
+                              <input type="file" id="file">
+                          </span>
+                      </a>
+                      </div>
+                  <a href="#" data-toggle="sidebar-colapse" class="bg-light text-dark list-group-item list-group-item-action d-flex align-items-center">
+                      <div class="d-flex w-100 justify-content-start align-items-center">
+                          <span id="collapse-icon" class="fa fa-2x mr-3"></span>
+                          <span id="collapse-text" class="menu-collapsed">Collapse</span>
+                      </div>
+                  </a>
+                  <!-- Logo -->
+                  <li class="list-group-item logo-separator d-flex justify-content-center">
+                      <img src='./assets/logos/alvo.png' width="30" height="30" />    
+                  </li>   
+              </ul><!-- List Group END-->
+          </div><!-- sidebar-container END -->
+  
+          <!-- MAIN -->
+          <div class="col">
+            <div id="map" class="map"></div>
+            <div id="popup" class="ol-popup">
+              <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+              <div id="popup-content"></div>
+            </div>
+          </div><!-- Main Col END -->
+          
+      </div><!-- body-row END -->
+      
+      <script src="./js/index.js"></script>
+      <script src="./libs/v6.4.3-dist/ol.js"></script>
+      <script type="module" src="./js/map.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+      <script src="./js/sidebar.js"></script>
+</body>
+</html>

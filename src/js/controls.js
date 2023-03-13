@@ -1,5 +1,5 @@
 
-import './../css/controls.css'
+import '../css/controls.css'
 
 
 // mousePosition

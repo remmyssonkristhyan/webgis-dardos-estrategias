@@ -1,6 +1,5 @@
 #body-row {
-    margin-left:0;
-    margin-right:0;
+    width: 100%;
 }
 #sidebar-container {
     min-height: calc(100vh - 56px);   
